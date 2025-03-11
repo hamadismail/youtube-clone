@@ -1,0 +1,10 @@
+/* root */
+:root {
+  --clr--primary: #ff1f3d;
+  --clr-bar: rgba(23, 23, 23, 0.2);
+  --clr-bg: rgba(37, 37, 37, 0.2);
+  --btn-fg: rgba(37, 37, 37, 0.7);
+  --btn-bg: rgba(37, 37, 37, 0.15);
+  --text-primary: #171717;
+  --text-secondary: #252525;
+}
