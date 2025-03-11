@@ -20,26 +20,49 @@
     <!-- header design -->
     <header>
       <nav
-        class="w-11/12 mx-auto flex justify-between py-4 border-b-2 border-[var(--clr-bar)]"
+        class="w-11/12 mx-auto flex justify-between items-center py-4 border-b-2 border-[var(--clr-bar)]"
       >
         <div class="logo">
-          <img src="./assets/Logo.png" alt="" />
+          <img class="w-[120px]" src="./assets/Logo.png" alt="" />
         </div>
         <div class="sort">
           <button
-            class="px-3 py-2 bg-[var(--clr-bg)] rounded-md text-[var(--text-secondary)]"
+            class="px-3 py-1 bg-[var(--clr-bg)] rounded-md text-[var(--text-secondary)]"
           >
             Sort By View
           </button>
         </div>
         <div class="blog">
           <button
-            class="px-3 py-2 bg-[var(--clr--primary)] rounded-md text-white"
+            class="px-3 py-1 bg-[var(--clr-primary)] rounded-md text-white"
           >
             Blogs
           </button>
         </div>
       </nav>
     </header>
+
+    <main>
+      <nav class="my-3 flex justify-center gap-3">
+        <button class="bg-[var(--clr-primary)] text-white rounded-md px-3 py-1">
+          All
+        </button>
+        <button
+          class="bg-[var(--btn-bg)] text-[var(--btn-fg)] rounded-md px-3 py-1"
+        >
+          Music
+        </button>
+        <button
+          class="bg-[var(--btn-bg)] text-[var(--btn-fg)] rounded-md px-3 py-1"
+        >
+          Comedy
+        </button>
+        <button
+          class="bg-[var(--btn-bg)] text-[var(--btn-fg)] rounded-md px-3 py-1"
+        >
+          Drawing
+        </button>
+      </nav>
+    </main>
   </body>
 </html>

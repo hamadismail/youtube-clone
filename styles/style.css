@@ -1,6 +1,6 @@
 /* root */
 :root {
-  --clr--primary: #ff1f3d;
+  --clr-primary: #ff1f3d;
   --clr-bar: rgba(23, 23, 23, 0.2);
   --clr-bg: rgba(37, 37, 37, 0.2);
   --btn-fg: rgba(37, 37, 37, 0.7);
