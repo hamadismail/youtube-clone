@@ -42,15 +42,20 @@
 
     <main class="w-11/12 mx-auto">
       <nav id="category-container" class="my-3 flex justify-center gap-3">
-        <button
-          onclick="loadVideos()"
-          class="btn btn-sm bg-[var(--clr-primary)] text-white"
-        >
+        <button id="btn-all" onclick="loadVideos()" class="btn btn-sm active">
           All
         </button>
       </nav>
 
-      <section id="video-container" class="grid grid-cols-4 gap-4"></section>
+      <section id="video-container" class="grid grid-cols-4 gap-4">
+        <!-- emtpy videos -->
+        <div class="col-span-full mt-8">
+          <img class="mx-auto" src="./assets/Icon.png" alt="" />
+          <h2 class="text-2xl font-bold text-center">
+            Oops!! Sorry, There is no content here
+          </h2>
+        </div>
+      </section>
     </main>
 
     <!-- script file -->

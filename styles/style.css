@@ -8,3 +8,8 @@
   --text-primary: #171717;
   --text-secondary: #252525;
 }
+
+.active {
+  background-color: var(--clr-primary);
+  color: white;
+}
