@@ -38,6 +38,13 @@ function loadCategoryVideos(id) {
     });
 }
 
+function loadVideoDetails(id) {
+  const url = `https://openapi.programming-hero.com/api/phero-tube/video/${id}`;
+  fetch(url)
+    .then(res => res.json())
+    .then(data => displayVideoDetails(data.video));
+}
+
 // display button category
 function displayCategory(category) {
   const categoryContainer = document.getElementById('category-container');
@@ -69,6 +76,8 @@ function displayVideo(videos) {
 
   videos.forEach(video => {
     const videoCard = document.createElement('div');
+
+    // add verified badge
     let verified = ' ';
     if (video.authors[0]['verified']) {
       verified = `<img class="h-4 w-4 inline"
@@ -94,7 +103,7 @@ function displayVideo(videos) {
     }
 
     videoCard.innerHTML = `
-    <div class="card bg-base-100 cursor-pointer">
+    <div onclick="loadVideoDetails('${video.video_id}')" class="card bg-base-100 cursor-pointer">
     <figure class="relative">
         <img class="w-full h-48 object-cover"
         src=${video.thumbnail}/>
@@ -119,6 +128,23 @@ function displayVideo(videos) {
 
     videoCardContainer.appendChild(videoCard);
   });
+}
+
+function displayVideoDetails(data) {
+  document.getElementById('my_modal_1').showModal();
+  const detailsContainer = document.getElementById('details-container');
+
+  detailsContainer.innerHTML = `
+    <div class="card bg-base-100 image-full shadow-sm">
+  <figure>
+    <img class="object-cover w-full" src= ${data.thumbnail} />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">${data.title}</h2>
+    <p>${data.description}</p>
+  </div>
+</div>
+  `;
 }
 
 loadCategories();
