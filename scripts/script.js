@@ -15,8 +15,10 @@ function loadCategories() {
 }
 
 // load videos
-function loadVideos() {
-  fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
+function loadVideos(searchText = '') {
+  fetch(
+    `https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`
+  )
     .then(res => res.json())
     .then(data => {
       removeActiveClass();
@@ -78,11 +80,11 @@ function displayVideo(videos) {
     const videoCard = document.createElement('div');
 
     // add verified badge
-    let verified = ' ';
-    if (video.authors[0]['verified']) {
-      verified = `<img class="h-4 w-4 inline"
-        src="https://img.icons8.com/color/48/verified-badge.png"/>`;
-    }
+    // let verified = ' ';
+    // if (video.authors[0]['verified']) {
+    //   verified = `<img class="h-4 w-4 inline"
+    //     src="https://img.icons8.com/color/48/verified-badge.png"/>`;
+    // }
 
     // calculate uploaded time
     let time = video.others.posted_date;
@@ -103,7 +105,9 @@ function displayVideo(videos) {
     }
 
     videoCard.innerHTML = `
-    <div onclick="loadVideoDetails('${video.video_id}')" class="card bg-base-100 cursor-pointer">
+    <div onclick="loadVideoDetails('${
+      video.video_id
+    }')" class="card bg-base-100 cursor-pointer">
     <figure class="relative">
         <img class="w-full h-48 object-cover"
         src=${video.thumbnail}/>
@@ -119,7 +123,12 @@ function displayVideo(videos) {
 
         <div class="">
             <h2 class="card-title">${video.title}</h2>
-            <p class="text-sm">${video.authors[0]['profile_name']} ${verified}</p>
+            <p class="text-sm">${video.authors[0]['profile_name']} ${
+      video.authors[0]['verified']
+        ? `<img class="h-4 w-4 inline"
+        src="https://img.icons8.com/color/48/verified-badge.png"/>`
+        : ``
+    }</p>
             <p class="text-sm">${video.others.views} views</p>
         </div>
     </div>
@@ -146,6 +155,11 @@ function displayVideoDetails(data) {
 </div>
   `;
 }
+
+document.getElementById('search').addEventListener('keyup', e => {
+  const input = e.target.value;
+  loadVideos(input);
+});
 
 loadCategories();
 loadVideos();
