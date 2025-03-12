@@ -46,7 +46,7 @@
             <input id="search" type="search" required placeholder="Search" />
           </label>
         </div>
-        <div class="blog">
+        <div class="blog max-md:hidden">
           <button class="btn btn-md bg-[var(--clr-primary)] text-white">
             Sort by view
           </button>
@@ -61,7 +61,10 @@
         </button>
       </nav>
 
-      <section id="video-container" class="grid grid-cols-4 gap-4">
+      <section
+        id="video-container"
+        class="grid grid-cols-1 md:grid-cols-4 gap-4"
+      >
         <!-- emtpy videos -->
         <div class="col-span-full mt-8">
           <img class="mx-auto" src="./assets/Icon.png" alt="" />
