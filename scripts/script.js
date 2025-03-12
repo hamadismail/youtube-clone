@@ -34,33 +34,48 @@ function displayVideo(videos) {
     const videoCard = document.createElement('div');
     let verified = ' ';
     if (video.authors[0]['verified']) {
-      verified = `
-        <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height=12 width=12>
-          <path fill=blue d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-        </svg>
-      `;
+      verified = `<img class="h-4 w-4 inline"
+        src="https://img.icons8.com/color/48/verified-badge.png"/>`;
+    }
+
+    // calculate uploaded time
+    let time = video.others.posted_date;
+    if (time) {
+      if (parseInt(time) <= 86400) {
+        const hour = Math.floor(time / 3600);
+        const minute = Math.floor((time % 3600) / 60);
+        time = `${hour}hrs ${minute} min ago`;
+      } else {
+        const decade = Math.floor(time / (86400 * 30 * 12 * 10));
+        const year = Math.floor(
+          (time % (86400 * 30 * 12 * 10)) / (86400 * 30 * 12)
+        );
+        time = `${decade} decade ${year} year ago`;
+      }
+    } else {
+      time = '';
     }
 
     videoCard.innerHTML = `
-    <div class="card bg-base-100 w-64 shadow-sm">
-    <figure>
-        <img class="max-w-full h-48 object-cover"
+    <div class="card bg-base-100 cursor-pointer">
+    <figure class="relative">
+        <img class="w-full h-48 object-cover"
         src=${video.thumbnail}/>
+
+        <span class="absolute bottom-2 right-2 text-sm rounded bg-black text-white px-2">${time}</span>
      </figure>
-    <div class="card-body">
-    <div class="flex gap-2 items-start">
-        <div class="avatar">
-            <div class="w-8 rounded-full">
+    <div class="flex py-3 gap-2 px-0">
+        <div class="avatar mt-1">
+            <div class="w-8 h-8 rounded-full">
                 <img src=${video.authors[0]['profile_picture']} />
             </div>
         </div>
 
-        <div>
-            <h2 class="card-title text-sm">${video.title}</h2>
-            <p class="text-[10px]">${video.authors[0]['profile_name']} ${verified}</p>
-            <p class="text-[10px]">${video.others.views} views</p>
+        <div class="">
+            <h2 class="card-title">${video.title}</h2>
+            <p class="text-sm">${video.authors[0]['profile_name']} ${verified}</p>
+            <p class="text-sm">${video.others.views} views</p>
         </div>
-    </div>
     </div>
     </div>
     `;
